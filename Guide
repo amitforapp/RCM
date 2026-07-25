@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>GST RCM Reference — Reverse Charge Mechanism Categories</title>
+<link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700&family=Playfair+Display:wght@600;700&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F0F4F8;
+  --accent:#2563EB;
+  --accent2:#3B7CF6;
+  --accent-light:#EEF4FF;
+  --gold:#B45309;
+  --gold-bg:#FFFBEB;
+  --gold-border:#FDE68A;
+  --text:#1E2D45;
+  --text2:#4A6080;
+  --text3:#8AA0BA;
+  --border:#D0DCF0;
+  --border2:#B8CCEA;
+  --card:#FFFFFF;
+  --success:#059669;
+  --success-bg:#ECFDF5;
+  --danger:#DC2626;
+  --danger-bg:#FEF2F2;
+  --purple:#7C3AED;
+  --purple-bg:#F5F3FF;
+  --radius:12px;
+  --radius-sm:8px;
+  --shadow:0 1px 4px rgba(30,60,114,0.08),0 4px 16px rgba(30,60,114,0.06);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+body{font-family:'Outfit',sans-serif;background:var(--bg);color:var(--text);min-height:100vh}
+
+/* LOGIN SCREEN */
+#login-screen{display:flex;align-items:center;justify-content:center;min-height:100vh;background:linear-gradient(135deg,#1B2B4B 0%,#243656 40%,#1a3a6b 100%);padding:2rem}
+.login-wrap{width:100%;max-width:420px}
+.login-logo{text-align:center;margin-bottom:1.5rem}
+.login-logo img{width:76px;height:76px;object-fit:contain;margin-bottom:0.75rem;display:block;margin-left:auto;margin-right:auto}
+.login-logo h1{font-family:'Playfair Display',serif;font-size:24px;color:#fff;letter-spacing:-0.3px}
+.login-logo p{font-size:12.5px;color:rgba(255,255,255,0.55);margin-top:4px}
+.login-card{background:#fff;border-radius:20px;padding:2rem;box-shadow:0 20px 60px rgba(0,0,0,0.3)}
+.login-card h2{font-size:18px;font-weight:600;color:var(--text);margin-bottom:3px}
+.login-card .lsub{font-size:13px;color:var(--text2);margin-bottom:1.5rem}
+.lfield{margin-bottom:1rem}
+.lfield label{display:block;font-size:12px;font-weight:600;color:var(--text2);margin-bottom:5px;letter-spacing:0.3px;text-transform:uppercase}
+.lfield input{width:100%;background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 14px;color:var(--text);font-size:14px;font-family:'Outfit',sans-serif;transition:border-color 0.2s,box-shadow 0.2s}
+.lfield input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.1)}
+.btn-login{width:100%;background:var(--accent);color:#fff;border:none;border-radius:var(--radius-sm);padding:13px;font-size:14px;font-weight:600;font-family:'Outfit',sans-serif;cursor:pointer;letter-spacing:0.3px;transition:all 0.2s}
+.btn-login:hover{background:var(--accent2);transform:translateY(-1px);box-shadow:0 4px 16px rgba(37,99,235,0.35)}
+.login-err{background:var(--danger-bg);border:1px solid #FECACA;border-radius:var(--radius-sm);padding:9px 13px;font-size:13px;color:var(--danger);margin-bottom:1rem;display:none}
+.pro-note{margin-top:1.25rem;background:rgba(255,255,255,0.06);border:1px solid rgba(255,255,255,0.15);border-radius:var(--radius-sm);padding:14px 16px;font-size:12px;color:rgba(255,255,255,0.75);line-height:1.65}
+.pro-note .pn-title{font-size:12.5px;font-weight:700;color:#93C5FD;margin-bottom:6px;letter-spacing:0.3px;text-transform:uppercase}
+.login-tagline{text-align:center;margin:0.9rem 0 1.5rem}
+.login-tagline h2{font-family:'Playfair Display',serif;font-size:17px;color:#fff;line-height:1.4;letter-spacing:-0.2px}
+.login-tagline p{font-size:12.5px;color:rgba(255,255,255,0.6);margin-top:6px;line-height:1.55;max-width:380px;margin-left:auto;margin-right:auto}
+.login-footer{text-align:center;margin-top:1.1rem;font-size:10.5px;color:rgba(255,255,255,0.35);letter-spacing:0.2px}
+#app-screen{display:none}
+
+/* HEADER */
+.topbar{background:linear-gradient(135deg,#1B2B4B 0%,#243656 45%,#1a3a6b 100%);padding:2.25rem 2rem 2rem;color:#fff}
+.topbar-inner{max-width:1280px;margin:0 auto}
+.tb-head{display:flex;align-items:center;gap:14px;margin-bottom:0.7rem}
+.tb-logo{width:52px;height:52px;object-fit:contain;flex-shrink:0}
+.tb-badge{display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.15);border-radius:20px;padding:4px 12px;font-size:11px;font-weight:600;letter-spacing:0.4px;text-transform:uppercase;color:#93C5FD;margin-bottom:0.5rem}
+.topbar h1{font-family:'Playfair Display',serif;font-size:29px;letter-spacing:-0.4px}
+.topbar p{font-size:13.5px;color:rgba(255,255,255,0.65);margin-top:6px;max-width:760px;line-height:1.55}
+
+.wrap{max-width:1280px;margin:0 auto;padding:1.75rem 2rem 3rem}
+
+/* SUMMARY STAT CARDS */
+.stat-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:0.85rem;margin-bottom:1.25rem}
+.sc{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:0.95rem 1.1rem;box-shadow:var(--shadow);cursor:pointer;transition:transform 0.12s}
+.sc:hover{transform:translateY(-1px)}
+.sc-lbl{font-size:10px;font-weight:600;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:4px}
+.sc-val{font-size:20px;font-weight:700;color:var(--text)}
+.sc-sub{font-size:11px;color:var(--text2);margin-top:2px}
+.sc.blue{border-left:3px solid var(--accent);background:linear-gradient(135deg,#EEF4FF,#fff)}
+.sc.gold{border-left:3px solid #F59E0B;background:linear-gradient(135deg,#FFFBEB,#fff)}
+.sc.green{border-left:3px solid var(--success);background:linear-gradient(135deg,#ECFDF5,#fff)}
+.sc.purple{border-left:3px solid var(--purple);background:linear-gradient(135deg,#F5F3FF,#fff)}
+.sc.rose{border-left:3px solid #E11D48;background:linear-gradient(135deg,#FFF1F2,#fff)}
+
+/* CONTROLS */
+.controls{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1rem 1.1rem;box-shadow:var(--shadow);margin-bottom:1.1rem;position:sticky;top:10px;z-index:20}
+.ctrl-row{display:flex;gap:10px;flex-wrap:wrap;align-items:center}
+.search-box{flex:1;min-width:230px;position:relative}
+.search-box input{width:100%;background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 14px 10px 34px;color:var(--text);font-size:13.5px;font-family:'Outfit',sans-serif}
+.search-box input:focus{outline:none;border-color:var(--accent);box-shadow:0 0 0 3px rgba(37,99,235,0.08)}
+.search-box .si{position:absolute;left:11px;top:50%;transform:translateY(-50%);font-size:14px;color:var(--text3)}
+.exp-btns{display:flex;gap:6px}
+.ebtn{background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:9px 13px;font-size:12px;font-weight:600;color:var(--text2);cursor:pointer;font-family:'Outfit',sans-serif;white-space:nowrap}
+.ebtn:hover{border-color:var(--accent);color:var(--accent)}
+.filter-tabs{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+.ftab{background:#F8FAFF;border:1.5px solid var(--border);border-radius:20px;padding:7px 14px;font-size:12.5px;font-weight:500;color:var(--text2);cursor:pointer;transition:all 0.15s;font-family:'Outfit',sans-serif;white-space:nowrap}
+.ftab:hover{border-color:var(--border2);color:var(--text)}
+.ftab.active{background:var(--accent);border-color:var(--accent);color:#fff}
+.status-toggle{display:flex;gap:6px;margin-top:8px;flex-wrap:wrap}
+.stog{background:#F8FAFF;border:1.5px solid var(--border);border-radius:20px;padding:6px 13px;font-size:12px;font-weight:500;color:var(--text2);cursor:pointer;font-family:'Outfit',sans-serif}
+.stog.active{background:var(--text);border-color:var(--text);color:#fff}
+.result-count{font-size:11.5px;color:var(--text3);margin-top:9px}
+
+/* SECTION HEADER */
+.sec-head{display:flex;align-items:center;gap:10px;margin:1.5rem 0 0.4rem}
+.sec-head h3{font-family:'Playfair Display',serif;font-size:16.5px;color:var(--text)}
+.sec-head .cnt{background:var(--accent-light);color:var(--accent);font-size:11px;font-weight:700;padding:2px 9px;border-radius:12px}
+.sec-desc{font-size:12px;color:var(--text2);margin:0 0 0.7rem;line-height:1.5}
+
+/* TABLE */
+.tbl-wrap{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);overflow:hidden;margin-bottom:0.5rem}
+table.rcm-table{width:100%;border-collapse:collapse}
+.rcm-table thead th{background:#F8FAFF;text-align:left;font-size:10.5px;font-weight:700;color:var(--text2);text-transform:uppercase;letter-spacing:0.4px;padding:10px 12px;border-bottom:1px solid var(--border);white-space:nowrap}
+.rcm-table thead th.num{width:34px}
+.rcm-table thead th.rate-col{width:90px}
+.rcm-table thead th.code-col{width:150px}
+.rcm-table thead th.sec-col{width:70px}
+.rcm-table thead th.exp-col{width:34px}
+.row-main{cursor:pointer;transition:background 0.1s;border-bottom:1px solid var(--border)}
+.row-main:hover{background:#F8FAFF}
+.row-main.withdrawn-row{background:repeating-linear-gradient(135deg,#fff,#fff 8px,#FAFAFA 8px,#FAFAFA 16px);opacity:0.72}
+.row-main td{padding:10px 12px;font-size:12.5px;vertical-align:top}
+.rn-num{color:var(--text3);font-size:11px;font-weight:600}
+.rn-name{font-weight:600;color:var(--text);line-height:1.4}
+.rn-name .wd-tag{display:inline-block;margin-left:6px;background:var(--danger);color:#fff;font-size:9px;font-weight:700;padding:1px 7px;border-radius:8px;letter-spacing:0.2px;text-transform:uppercase;vertical-align:middle}
+.rn-rate{font-weight:700;color:var(--gold);white-space:nowrap;font-size:12.5px}
+.rn-rate.igst{color:var(--purple)}
+.rn-code{color:var(--text2);font-size:11.5px;white-space:normal;word-break:break-word}
+.chev{color:var(--text3);font-size:12px;transition:transform 0.15s;display:inline-block}
+.chev.open{transform:rotate(90deg);color:var(--accent)}
+.tag{font-size:10px;font-weight:600;padding:2.5px 7px;border-radius:6px;letter-spacing:0.2px;display:inline-block;white-space:nowrap}
+.tag.sec93{background:var(--accent-light);color:var(--accent)}
+.tag.sec94{background:#FFF1F2;color:#BE123C}
+.tag.sec95{background:var(--purple-bg);color:var(--purple)}
+.tag.goods{background:var(--success-bg);color:var(--success)}
+.tag.services{background:#FFF7ED;color:#C2410C}
+
+.row-detail{display:none}
+.row-detail.open{display:table-row}
+.row-detail td{padding:0;border-bottom:1px solid var(--border)}
+.detail-inner{background:#FAFBFF;padding:1rem 1.25rem 1.15rem 3.2rem;border-left:3px solid var(--accent)}
+.detail-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:10px 22px;margin-bottom:10px}
+.dg-item .dg-lbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.4px;margin-bottom:3px}
+.dg-item .dg-val{font-size:12.5px;color:var(--text);font-weight:600;line-height:1.4}
+.detail-note{font-size:12.5px;color:var(--text2);line-height:1.6;background:#fff;border:1px solid var(--border);border-radius:var(--radius-sm);padding:10px 12px}
+.detail-note b{color:var(--text)}
+.withdrawn-note{margin-top:8px;background:var(--danger-bg);border:1px solid #FECACA;border-radius:var(--radius-sm);padding:8px 12px;font-size:12px;color:var(--danger);font-weight:500}
+
+.empty{text-align:center;padding:3rem 1rem;color:var(--text3);font-size:13px}
+
+.footnote{margin-top:1.6rem;background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:1.1rem 1.25rem;box-shadow:var(--shadow);font-size:12px;color:var(--text2);line-height:1.7}
+.footnote b{color:var(--text)}
+.footnote .fn-title{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:6px;display:flex;align-items:center;gap:6px;cursor:pointer;user-select:none}
+.footnote .fn-body{display:none}
+.footnote .fn-body.open{display:block;margin-top:6px}
+.footnote .fn-chev{margin-left:auto;font-size:11px;color:var(--text3);transition:transform 0.15s}
+.footnote .fn-chev.open{transform:rotate(90deg)}
+
+.app-footer{text-align:center;margin-top:1.75rem;padding-top:1rem;border-top:1px solid var(--border);font-size:11px;color:var(--text3);letter-spacing:0.2px}
+
+/* LOGOUT BUTTON */
+.topbar{position:relative}
+.logout-btn{position:absolute;top:1.5rem;right:2rem;background:rgba(255,255,255,0.1);border:1px solid rgba(255,255,255,0.22);color:#fff;border-radius:20px;padding:7px 16px;font-size:12.5px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;transition:all 0.15s}
+.logout-btn:hover{background:rgba(255,255,255,0.18);border-color:rgba(255,255,255,0.35)}
+
+/* TAB NAV */
+.tab-nav{background:#16233F;border-bottom:1px solid rgba(255,255,255,0.08)}
+.tab-nav-inner{max-width:1280px;margin:0 auto;padding:0 2rem;display:flex;gap:4px}
+.tabbtn{background:none;border:none;color:rgba(255,255,255,0.55);padding:13px 18px;font-size:13.5px;font-weight:600;cursor:pointer;font-family:'Outfit',sans-serif;border-bottom:3px solid transparent;transition:all 0.15s}
+.tabbtn:hover{color:rgba(255,255,255,0.85)}
+.tabbtn.active{color:#fff;border-bottom-color:var(--accent2)}
+
+/* CALCULATOR */
+.calc-card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);box-shadow:var(--shadow);padding:1.5rem 1.6rem;max-width:760px;margin:0 auto}
+.calc-head{display:flex;align-items:center;gap:12px;margin-bottom:1.5rem}
+.calc-icon{width:42px;height:42px;background:var(--accent-light);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0}
+.calc-head h2{font-family:'Playfair Display',serif;font-size:18px;color:var(--text)}
+.calc-head p{font-size:12px;color:var(--text2);margin-top:2px}
+.calc-field{margin-bottom:1.1rem}
+.calc-field label{display:block;font-size:10.5px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.5px;margin-bottom:6px}
+.calc-field select{width:100%;background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:11px 14px;color:var(--text);font-size:13.5px;font-family:'Outfit',sans-serif}
+.calc-field select:focus{outline:none;border-color:var(--accent)}
+.calc-row{display:grid;grid-template-columns:1fr 1.3fr;gap:1.1rem}
+.amt-input{display:flex;align-items:center;background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:0 12px}
+.amt-input span{color:var(--text3);font-size:13.5px;font-weight:600}
+.amt-input input{flex:1;border:none;background:none;padding:11px 8px;font-size:13.5px;color:var(--text);font-family:'Outfit',sans-serif}
+.amt-input input:focus{outline:none}
+.supply-toggle{display:flex;gap:6px}
+.stbtn{flex:1;background:#F8FAFF;border:1.5px solid var(--border);border-radius:var(--radius-sm);padding:10px 10px;font-size:11.5px;font-weight:600;color:var(--text2);cursor:pointer;font-family:'Outfit',sans-serif;text-align:center;line-height:1.3}
+.stbtn.active{background:var(--accent-light);border-color:var(--accent);color:var(--accent)}
+.calc-catbox{background:#F8FAFF;border:1px solid var(--border);border-radius:var(--radius-sm);padding:12px 14px;margin-bottom:1.1rem}
+.calc-catbox .cc-name{font-size:13px;font-weight:600;color:var(--text);margin-bottom:4px}
+.calc-catbox .cc-meta{font-size:11.5px;color:var(--text2)}
+.calc-catbox .cc-rate-badge{float:right;background:var(--gold-bg);border:1px solid var(--gold-border);color:var(--gold);font-size:12px;font-weight:700;padding:3px 10px;border-radius:8px}
+.calc-result{background:var(--accent-light);border:1px solid var(--border2);border-radius:var(--radius-sm);padding:1.1rem 1.2rem}
+.calc-result .cr-title{font-size:12.5px;font-weight:700;color:var(--text);margin-bottom:12px;display:flex;align-items:center;gap:6px}
+.cr-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(140px,1fr));gap:10px;margin-bottom:12px}
+.cr-box{background:#fff;border:1px solid var(--border);border-radius:8px;padding:10px 12px;text-align:center}
+.cr-box.total{background:var(--accent);border-color:var(--accent)}
+.cr-box .cr-lbl{font-size:10px;font-weight:700;color:var(--text3);text-transform:uppercase;letter-spacing:0.3px}
+.cr-box.total .cr-lbl{color:rgba(255,255,255,0.75)}
+.cr-box .cr-val{font-size:17px;font-weight:700;color:var(--text);margin-top:4px}
+.cr-box.total .cr-val{color:#fff}
+.calc-note{font-size:11.5px;color:var(--text2);line-height:1.6;background:#fff;border:1px solid var(--border);border-radius:8px;padding:9px 11px;margin-top:8px}
+.calc-note b{color:var(--text)}
+.calc-note.warn{background:var(--gold-bg);border-color:var(--gold-border);color:#92400E}
+.calc-note.ok{background:var(--success-bg);border-color:#A7F3D0;color:#065F46}
+.calc-note.blocked{background:var(--danger-bg);border-color:#FECACA;color:#991B1B}
+
+@media(max-width:640px){
+  .logout-btn{position:static;margin-top:14px}
+  .calc-row{grid-template-columns:1fr}
+  .tab-nav-inner{padding:0 1rem;overflow-x:auto}
+}
+
+/* mobile: collapse table to cards */
+@media(max-width:800px){
+  .topbar{padding:1.75rem 1.25rem 1.5rem}
+  .wrap{padding:1.1rem 1rem 2.5rem}
+  .controls{position:static}
+  .rcm-table thead{display:none}
+  .rcm-table, .rcm-table tbody, .row-main, .row-main td{display:block;width:100%}
+  .row-main{padding:10px 12px;border-radius:10px;margin-bottom:8px;border:1px solid var(--border)}
+  .row-main td{padding:2px 0;border:none}
+  .row-main .rn-num{display:none}
+  .detail-inner{padding:0.9rem 1rem}
+}
+</style>
+</head>
+<body>
+
+<div id="login-screen">
+  <div class="login-wrap">
+    <div class="login-logo">
+      <img src="data:image/png;base64,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" alt="Creative Smile logo">
+      <h1>GST RCM Reference</h1>
+      <p>Reverse Charge Mechanism — Category Guide</p>
+    </div>
+    <div class="login-tagline">
+      <h2>From Notification to Compliance—Everything About GST RCM.</h2>
+      <p>A comprehensive knowledge platform designed to help professionals understand, verify, and apply Reverse Charge provisions accurately.</p>
+    </div>
+    <div class="login-card">
+      <h2>Sign in</h2>
+      <div class="lsub">Enter your credentials to access the reference tool</div>
+      <div class="login-err" id="loginErr">Invalid username or password. Please try again.</div>
+      <div class="lfield">
+        <label>Username</label>
+        <input type="text" id="loginUser" placeholder="Username" value="Smart" onkeydown="if(event.key==='Enter')document.getElementById('loginPass').focus()">
+      </div>
+      <div class="lfield">
+        <label>Password</label>
+        <input type="password" id="loginPass" placeholder="Password" value="SmartAI" onkeydown="if(event.key==='Enter')doLogin()">
+      </div>
+      <button class="btn-login" onclick="doLogin()">Sign In</button>
+    </div>
+    <div class="pro-note">
+      <div class="pn-title">📌 Professional Note</div>
+      This application is designed to simplify the understanding of GST Reverse Charge Mechanism (RCM) provisions by providing structured references, search facilities, and categorized information. It is intended to assist professionals in improving productivity and decision-making while encouraging verification with the latest statutory provisions before implementation.
+    </div>
+    <div class="login-footer">© CMA Amit Anant Devdhe</div>
+  </div>
+</div>
+
+<div id="app-screen">
+<div class="topbar">
+  <div class="topbar-inner">
+    <div class="tb-head">
+      <img class="tb-logo" src="data:image/png;base64,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" alt="Creative Smile logo">
+      <div>
+        <div class="tb-badge">📋 GST Reference · For Taxpayers &amp; Professionals</div>
+        <h1>Reverse Charge Mechanism (RCM) — Complete Category Guide</h1>
+      </div>
+    </div>
+    <p>Every notified RCM category under GST — Section 9(3), 9(4) and 9(5) of the CGST Act, plus Section 5(3)/5(4) of the IGST Act for imports — with GST rate, HSN/SAC, governing notification, effective date and ITC eligibility. Click any row to expand full details. Informational only; always cross-check against the latest CBIC notification before applying.</p>
+    <button class="logout-btn" onclick="doLogout()">⎋ Logout</button>
+  </div>
+</div>
+
+<div class="tab-nav">
+  <div class="tab-nav-inner">
+    <button class="tabbtn active" id="tabbtn-reference" onclick="switchTab('reference')">📖 RCM Reference</button>
+    <button class="tabbtn" id="tabbtn-calculator" onclick="switchTab('calculator')">🧮 RCM Calculator</button>
+  </div>
+</div>
+
+<div class="wrap">
+
+  <div id="tab-reference">
+
+  <div class="stat-grid" id="statGrid"></div>
+
+  <div class="controls">
+    <div class="ctrl-row">
+      <div class="search-box">
+        <span class="si">🔍</span>
+        <input id="searchInput" placeholder="Search by service, goods, HSN/SAC, notification, keyword…" oninput="render()">
+      </div>
+      <div class="exp-btns">
+        <button class="ebtn" onclick="expandAll()">⬇ Expand all</button>
+        <button class="ebtn" onclick="collapseAll()">⬆ Collapse all</button>
+      </div>
+    </div>
+    <div class="filter-tabs" id="filterTabs"></div>
+    <div class="status-toggle" id="statusToggle"></div>
+    <div class="result-count" id="resultCount"></div>
+  </div>
+
+  <div id="output"></div>
+
+  <div class="footnote" onclick="toggleFn('fn1')">
+    <div class="fn-title">⚠️ How to read this reference <span class="fn-chev" id="fn1-chev">▶</span></div>
+    <div class="fn-body" id="fn1-body">
+      <b>Section 9(3)</b> — specified goods/services notified for RCM regardless of the supplier's registration status.
+      <b>Section 9(4)</b> — RCM triggered specifically because the supplier is unregistered, for the notified categories only (the old blanket URD rule was suspended in 2018 and never restored).
+      <b>Section 9(5)</b> — the e-commerce operator is deemed the supplier and pays GST on behalf of the actual service provider (not strictly "reverse charge" but grouped here for completeness).
+      RCM tax must always be paid in cash through the electronic cash ledger — never through ITC — though ITC can typically be claimed back in the same return, subject to Section 17(5) restrictions. Rates, entries and notifications change periodically via CBIC notifications and GST Council recommendations; treat this as a starting point for research, not a final position.
+    </div>
+  </div>
+
+  <div class="footnote" style="margin-top:0.6rem" onclick="toggleFn('fn2')">
+    <div class="fn-title">🌐 Import of services — quick rules <span class="fn-chev" id="fn2-chev">▶</span></div>
+    <div class="fn-body" id="fn2-body">
+      <b>Legal basis:</b> Section 5(3) of the IGST Act read with Notification 10/2017-Integrated Tax (Rate); place of supply governed by Section 13 of the IGST Act (location of recipient, for most B2B services).<br><br>
+      <b>Rate:</b> There is no single flat "import of services" rate — IGST applies at the rate the underlying service would attract if supplied domestically (SAC-driven). Most professional/consulting/IT/SaaS services fall at 18%; a handful of specified services carry lower rates.<br><br>
+      <b>No self-invoice required:</b> Unlike RCM from an unregistered domestic supplier, the foreign supplier's own commercial invoice is treated as sufficient documentation — a self-invoice under Rule 36(1)(b) is not mandated for import of services.<br><br>
+      <b>Related-party / no-consideration imports:</b> Taxable even without consideration under Schedule I, para 4 (services between related persons or distinct persons/branches in the course of business) — valued at open market value under Rule 28. Common triggers: parent-company cost allocations, management fee cross-charges, seconded-employee salary recharge, brand/royalty fees.<br><br>
+      <b>OIDAR:</b> For B2B OIDAR (cloud software, database access, digital ads, e-learning), the Indian recipient pays IGST under RCM as above. For B2C OIDAR (foreign platform to an Indian individual/non-business consumer), RCM does not apply — the foreign supplier itself must obtain simplified GST registration in India and pay tax directly.<br><br>
+      <b>Time of supply:</b> Earlier of (a) date of entry in the recipient's books, or (b) date of payment — whichever is earlier. Determines which month's GSTR-3B carries the liability.<br><br>
+      <b>ITC:</b> IGST paid under RCM on import of services is available as ITC in the same return, subject to the service being used for business purposes and not falling under a Section 17(5) block.
+    </div>
+  </div>
+
+  </div><!-- /tab-reference -->
+
+  <div id="tab-calculator" style="display:none">
+    <div class="calc-card">
+      <div class="calc-head">
+        <div class="calc-icon">🧮</div>
+        <div>
+          <h2>GST RCM Tax Liability Calculator</h2>
+          <p>Estimate tax liability &amp; cash payment required for RCM supplies</p>
+        </div>
+      </div>
+
+      <div class="calc-field">
+        <label>Select RCM category / service</label>
+        <select id="calcCategory" onchange="onCalcCategoryChange()"></select>
+      </div>
+
+      <div class="calc-row">
+        <div class="calc-field">
+          <label>Invoice amount / value (₹)</label>
+          <div class="amt-input">
+            <span>₹</span>
+            <input type="number" id="calcAmount" value="100000" min="0" oninput="computeCalc()">
+          </div>
+        </div>
+        <div class="calc-field">
+          <label>Supply type</label>
+          <div class="supply-toggle" id="supplyToggle">
+            <button type="button" class="stbtn active" id="stbtn-intra" onclick="setSupplyType('intra')">Intra-State (CGST + SGST)</button>
+            <button type="button" class="stbtn" id="stbtn-inter" onclick="setSupplyType('inter')">Inter-State (IGST)</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="calc-catbox" id="calcCatInfo"></div>
+
+      <div class="calc-result" id="calcResult"></div>
+    </div>
+  </div><!-- /tab-calculator -->
+
+  <div class="app-footer">© CMA Amit Anant Devdhe</div>
+
+</div>
+
+<script>
+// ══════════════════════ RCM DATA ══════════════════════
+// section: '9(3)' | '9(4)' | '9(5)'
+// cat: 'services' | 'goods'
+// itc: true / false / 'conditional'
+const RCM = [
+// ---------- SECTION 9(3) — SERVICES ----------
+{cat:'services', sec:'9(3)', name:'Goods Transport Agency (GTA) — freight', rate:'5%', code:'SAC 9965', notif:'Notif. 13/2017-CT(R), Entry 1', eff:'01.07.2017', itc:true,
+ note:'Applies when the GTA has not opted for forward charge (12% with ITC) and the recipient is a registered person, factory, society, company, partnership firm, casual taxable person, or body corporate. No self-invoice needed if GTA issues invoice marking "RCM applicable." Note: the "5%, no ITC" tag refers to the GTA itself forgoing ITC on its own inputs — the recipient discharging tax under RCM can still claim ITC of the RCM amount paid, same as any other RCM category.'},
+{cat:'services', sec:'9(3)', name:'Legal services — advocate / firm of advocates / senior advocate', rate:'18%', code:'SAC 9982', notif:'Notif. 13/2017-CT(R), Entry 2', eff:'01.07.2017', itc:true,
+ note:'Applies when legal service is supplied to any business entity located in the taxable territory, regardless of the entity\'s turnover.'},
+{cat:'services', sec:'9(3)', name:'Arbitral tribunal services', rate:'18%', code:'SAC 9982', notif:'Notif. 13/2017-CT(R), Entry 3', eff:'01.07.2017', itc:true,
+ note:'Services supplied by an arbitral tribunal to a business entity.'},
+{cat:'services', sec:'9(3)', name:'Sponsorship services', rate:'18%', code:'SAC 9983', notif:'Notif. 13/2017-CT(R), Entry 4', eff:'01.07.2017', itc:true, withdrawn:'16.01.2025', withdrawnNotif:'Notif. 07/2025-CT(R)',
+ note:'Withdrawn from RCM — moved to forward charge from 16 Jan 2025. Event organisers now charge GST directly on the sponsorship invoice instead of the sponsor self-assessing RCM.'},
+{cat:'services', sec:'9(3)', name:'Government / local authority services to business entity', rate:'18%', code:'SAC 9991', notif:'Notif. 13/2017-CT(R), Entry 5', eff:'01.07.2017', itc:true,
+ note:'Excludes renting of immovable property, postal services (speed post/express parcel/life insurance), transport of goods/passengers, and a few other carve-outs which stay on forward charge.'},
+{cat:'services', sec:'9(3)', name:'Director services to a company / body corporate', rate:'18%', code:'SAC 9983', notif:'Notif. 13/2017-CT(R), Entry 6', eff:'01.07.2017', itc:true,
+ note:'Applies to a non-executive/independent director\'s sitting fees, commission and similar payments. Whole-time/executive director salary under an employment contract is not a "supply" and is outside RCM.'},
+{cat:'services', sec:'9(3)', name:'Insurance agent services to insurance company', rate:'18%', code:'SAC 9971', notif:'Notif. 13/2017-CT(R), Entry 7', eff:'01.07.2017', itc:true,
+ note:'Applies where the agent is an individual/non-corporate. Corporate agents remain on forward charge.'},
+{cat:'services', sec:'9(3)', name:'Recovery agent services to bank / NBFC / financial institution', rate:'18%', code:'SAC 9985 / 9971', notif:'Notif. 13/2017-CT(R), Entry 8', eff:'01.07.2017', itc:true,
+ note:'Recipient is the bank, NBFC, or financial institution availing the recovery agent\'s service.'},
+{cat:'services', sec:'9(3)', name:'Copyright transfer — author, music composer, photographer, artist', rate:'12%', code:'SAC 9996 / 9973', notif:'Notif. 13/2017-CT(R), Entry 9 / Notif. 22/2019-CT(R)', eff:'01.07.2017 (amended 01.10.2019)', itc:true,
+ note:'Applies to original literary, dramatic, musical or artistic works transferred to a publisher/music company/producer. The author can opt to pay under forward charge by filing a declaration.'},
+{cat:'services', sec:'9(3)', name:'Renting of motor vehicle (passenger transport) from non-corporate supplier', rate:'5%', code:'SAC 9966', notif:'Notif. 22/2019-CT(R)', eff:'01.10.2019', itc:false,
+ note:'Applies when a body corporate hires a passenger motor vehicle from any person other than a body corporate who charges GST at 5% (if the supplier instead charges 12% with ITC, forward charge applies rather than RCM). ITC to the recipient is blocked under Section 17(5)(b) for motor vehicles used to transport persons, unless the recipient itself makes a further taxable supply of the same category of vehicle, uses it for transporting passengers as a business, or for imparting driver training — in which case ITC becomes available despite RCM.'},
+{cat:'services', sec:'9(3)', name:'Security services (manpower) — non-body-corporate supplier', rate:'18%', code:'SAC 9985', notif:'Notif. 29/2018-CT(R)', eff:'01.01.2019', itc:true,
+ note:'Applies when the security agency is a proprietorship, partnership or individual. If the agency is a company/LLP (body corporate), forward charge applies. Does not apply where recipient is a government department/local authority registered only for TDS, or a composition taxpayer.'},
+{cat:'services', sec:'9(3)', name:'Transfer of Development Rights (TDR) / Floor Space Index (FSI) for construction', rate:'18%', code:'SAC 9972', notif:'Notif. 05/2019-CT(R)', eff:'01.04.2019', itc:'conditional',
+ note:'Recipient is the real-estate promoter/developer receiving TDR/FSI from the landowner for construction of a project.'},
+{cat:'services', sec:'9(3)', name:'Long-term lease of land (premium/upfront amount, 30+ years)', rate:'18%', code:'SAC 9972', notif:'Notif. 05/2019-CT(R)', eff:'01.04.2019', itc:'conditional',
+ note:'Applies to promoters receiving long-term land lease for construction of residential/commercial projects.'},
+{cat:'services', sec:'9(3)', name:'Renting of residential dwelling to a registered person', rate:'18%', code:'SAC 9972', notif:'Notif. 05/2022-CT(R)', eff:'18.07.2022', itc:true,
+ note:'Applies only when the tenant is GST-registered and rents the dwelling for business/other purposes. Residential renting to an unregistered/individual tenant for personal residence remains exempt.'},
+{cat:'services', sec:'9(3)', name:'Renting of commercial immovable property by an unregistered landlord', rate:'18%', code:'SAC 9972', notif:'Notif. 09/2024-CT(R)', eff:'10.10.2024', itc:true,
+ note:'New from Oct 2024 — a major compliance addition. If a registered tenant rents office/shop/factory/warehouse space from an unregistered landlord, the tenant self-invoices and pays 18% RCM.'},
+{cat:'services', sec:'9(3)', name:'Import of services — general B2B (consulting, SaaS/cloud, licensing, professional fees)', rate:'18% (IGST)', rateType:'IGST', code:'SAC per service — e.g. 9983 consulting, 9973 licensing, 9984 IT/cloud', notif:'Sec 5(3) IGST Act read with Notif. 10/2017-IGST(R)', eff:'01.07.2017', itc:true,
+ note:'Recipient is any registered person in India receiving a service from a supplier located outside India, where place of supply is in India. Rate follows the SAC classification of the underlying service — there is no single flat "import of services" rate. Foreign supplier need not register in India for B2B supplies; no self-invoice is required — the recipient discharges IGST directly and reports it in GSTR-3B Table 3.1(d).'},
+{cat:'services', sec:'9(3)', name:'Import of services — related-party / group-company transactions, incl. without consideration', rate:'18% (IGST)', rateType:'IGST', code:'SAC per nature of service', notif:'Sec 5(3) IGST Act; Schedule I para 4 (deemed supply)', eff:'01.07.2017', itc:'conditional',
+ note:'Services received from a foreign holding/group company or branch office are taxable under RCM even without consideration, valued at open market value under Rule 28. Second proviso to Rule 28 (invoice value = deemed OMV where full ITC is available) commonly applied; expatriate salary cross-charge and management/marketing support fees are frequent audit triggers here.'},
+{cat:'services', sec:'9(3)', name:'Import of OIDAR services (B2B) — online database access, cloud software, digital advertising', rate:'18% (IGST)', rateType:'IGST', code:'SAC 9984', notif:'Sec 5(3) IGST Act / Sec 14 IGST Act (OIDAR)', eff:'01.07.2017', itc:true,
+ note:'For B2B OIDAR (Online Information and Database Access or Retrieval) supplies, the Indian registered recipient pays IGST under RCM. For B2C OIDAR to unregistered/non-business recipients in India, the foreign supplier itself must obtain "simplified registration" and pay tax — RCM does not apply to that leg.'},
+{cat:'services', sec:'9(3)', name:'Business Facilitator (BF) services to a banking company', rate:'18%', code:'SAC 9971', notif:'Notif. 13/2017-CT(R)', eff:'01.07.2017', itc:true,
+ note:'Recipient is the bank availing BF services in rural/priority-sector banking.'},
+{cat:'services', sec:'9(3)', name:'Business Correspondent (BC) services to a banking company', rate:'18%', code:'SAC 9971', notif:'Notif. 13/2017-CT(R)', eff:'01.07.2017', itc:true,
+ note:'Recipient is the bank availing BC services through an intermediary/agent (unless the BC itself engages a sub-agent, in which case the BC is the recipient for that leg).'},
+{cat:'services', sec:'9(3)', name:'Direct Selling Agent (DSA) services to bank/NBFC', rate:'18%', code:'SAC 9971', notif:'Notif. 13/2017-CT(R) (clarificatory circulars)', eff:'01.07.2017', itc:true,
+ note:'Applies where the DSA is an individual/non-corporate referring loan customers to the bank/NBFC.'},
+
+// ---------- SECTION 9(3) — GOODS ----------
+{cat:'goods', sec:'9(3)', name:'Cashew nuts (not shelled/peeled) — from an agriculturist', rate:'5%', code:'HSN 0801', notif:'Notif. 4/2017-CT(R), Entry 1', eff:'01.07.2017', itc:true,
+ note:'Recipient is any registered person procuring directly from an agriculturist.'},
+{cat:'goods', sec:'9(3)', name:'Bidi wrapper leaves (tendu leaves)', rate:'18%', code:'HSN 1404', notif:'Notif. 4/2017-CT(R), Entry 2', eff:'01.07.2017', itc:true,
+ note:'Recipient is any registered person procuring from an agriculturist/unregistered forest-produce collector.'},
+{cat:'goods', sec:'9(3)', name:'Tobacco leaves', rate:'5%', code:'HSN 2401', notif:'Notif. 4/2017-CT(R), Entry 3', eff:'01.07.2017', itc:true,
+ note:'Recipient is any registered person procuring directly from an agriculturist.'},
+{cat:'goods', sec:'9(3)', name:'Raw cotton — from an agriculturist', rate:'5%', code:'HSN 5201', notif:'Notif. 43/2017-CT(R)', eff:'15.11.2017', itc:true,
+ note:'Recipient is any registered person (typically a ginning mill/trader) procuring raw cotton from an agriculturist.'},
+{cat:'goods', sec:'9(3)', name:'Silk yarn — from a manufacturer of raw silk / silkworm cocoons', rate:'5%', code:'HSN 5004–5006', notif:'Notif. 4/2017-CT(R), Entry 4', eff:'01.07.2017', itc:true,
+ note:'Recipient is any registered person purchasing silk yarn manufactured from raw silk/cocoons.'},
+{cat:'goods', sec:'9(3)', name:'Supply of lottery — by state government / authorised agent', rate:'28%', code:'HSN 9804', notif:'Notif. 4/2017-CT(R), Entry 5–6', eff:'01.07.2017', itc:true,
+ note:'Recipient is the lottery distributor/selling agent. 28% applies uniformly on the higher of face value or notified value, regardless of state-run or state-authorised lottery type.'},
+{cat:'goods', sec:'9(3)', name:'Used vehicles, seized/confiscated goods, old & used goods, waste & scrap — sold by Central/State Govt, Union Territory or local authority', rate:'As applicable to the underlying goods (e.g. 12%/18% on used vehicles)', code:'HSN of the underlying goods — e.g. Ch. 87 for used vehicles', notif:'Notif. 4/2017-CT(R), Entry 7', eff:'13.10.2017', itc:true,
+ note:'Recipient is any registered person purchasing such goods from the specified government body. Rate rides on the HSN classification of the actual goods sold (vehicle, scrap metal, machinery, etc.), not a fixed RCM rate.'},
+{cat:'goods', sec:'9(3)', name:'Priority Sector Lending Certificate (PSLC)', rate:'12%', code:'HSN 4907', notif:'Notif. 36/2017-CT(R) / Circular 62/36/2018-GST', eff:'13.10.2017', itc:true,
+ note:'Recipient is the registered bank purchasing the PSLC. HSN 4907 classification (documents of title) was clarified by CBIC Circular 62/36/2018-GST.'},
+
+// ---------- SECTION 9(4) — UNREGISTERED SUPPLIER TRIGGERS ----------
+{cat:'goods', sec:'9(4)', name:'Metal scrap — from an unregistered supplier', rate:'18%', code:'HSN Ch. 72–81 (scrap)', notif:'Notif. 06/2024-CT(R)', eff:'10.10.2024', itc:true,
+ note:'Any registered person receiving metal scrap from an unregistered supplier must self-invoice and pay 18% RCM. Registered-to-registered metal scrap sales instead attract 2% TDS under GST, not RCM.'},
+{cat:'services', sec:'9(4)', name:'Real estate promoters — shortfall below 80% procurement from registered suppliers', rate:'18% on shortfall value', code:'HSN/SAC of the individual shortfall items', notif:'Notif. 07/2019-CT(R)', eff:'01.04.2019', itc:'conditional',
+ note:'Promoters of residential real-estate projects must procure at least 80% of inputs/input services from registered suppliers; RCM at a flat 18% applies on the value of the shortfall, computed annually at year-end (not item-by-item HSN rate).'},
+{cat:'goods', sec:'9(4)', name:'Cement procured by a promoter from an unregistered supplier', rate:'28%', code:'HSN 2523', notif:'Notif. 07/2019-CT(R)', eff:'01.04.2019', itc:'conditional',
+ note:'Applies regardless of whether the 80% threshold is otherwise met — cement from URD always attracts RCM for promoters, on a month-by-month basis (not the annual shortfall calculation).'},
+{cat:'goods', sec:'9(4)', name:'Capital goods procured by a promoter from an unregistered supplier', rate:'Applicable rate on the goods (typically 18%/28%)', code:'HSN of the specific capital good procured', notif:'Notif. 07/2019-CT(R)', eff:'01.04.2019', itc:'conditional',
+ note:'RCM at the goods\' own applicable GST rate on capital goods purchased from unregistered suppliers by a real-estate promoter — rate is not fixed and depends on HSN classification of the asset.'},
+
+// ---------- SECTION 9(5) — E-COMMERCE OPERATOR (deemed supplier) ----------
+{cat:'services', sec:'9(5)', name:'Passenger transport by radio-taxi / cab aggregator (app-based cabs)', rate:'5%', code:'SAC 9964', notif:'Notif. 17/2017-CT(R)', eff:'01.07.2017', itc:false,
+ note:'The e-commerce operator (the app platform) is the deemed supplier and pays GST — the individual driver does not need GST registration for this supply alone.'},
+{cat:'services', sec:'9(5)', name:'Accommodation services by unregistered suppliers via an e-commerce operator', rate:'12% / 18% (per declared tariff)', code:'SAC 9963', notif:'Notif. 17/2017-CT(R), as amended', eff:'01.07.2017 (amended 01.01.2022)', itc:false,
+ note:'Applies to hotels/homestays booked through an aggregator where the underlying supplier is unregistered.'},
+{cat:'services', sec:'9(5)', name:'Housekeeping services (e.g. plumbing, carpentry) via an e-commerce operator', rate:'18%', code:'SAC 9987', notif:'Notif. 17/2017-CT(R)', eff:'01.07.2017', itc:false,
+ note:'Applies where the individual service provider is unregistered and the service is booked through the platform.'},
+{cat:'services', sec:'9(5)', name:'Restaurant services supplied through an e-commerce operator', rate:'5%', code:'SAC 9963', notif:'Notif. 17/2017-CT(R), as amended', eff:'01.01.2022', itc:false,
+ note:'Applies to food-delivery platforms; the platform pays GST on restaurant services supplied through it (does not apply where the restaurant itself is registered and supplies from a specified premises under certain conditions).'},
+];
+
+RCM.forEach((r,i)=>{ r._id = 'r'+i; });
+
+// ══════════════════════ STATE ══════════════════════
+const FILTERS = [
+  {id:'all', label:'All categories'},
+  {id:'9(3)-services', label:'§9(3) Services'},
+  {id:'9(3)-goods', label:'§9(3) Goods'},
+  {id:'9(4)', label:'§9(4) Unregistered supplier'},
+  {id:'9(5)', label:'§9(5) E-commerce operator'},
+];
+let activeFilter='all', activeStatus='active', searchTerm='';
+let calcSupply = 'intra';
+const openRows = new Set();
+
+function buildTabs(){
+  document.getElementById('filterTabs').innerHTML = FILTERS.map(f=>
+    `<button class="ftab ${f.id===activeFilter?'active':''}" onclick="setFilter('${f.id}')">${f.label}</button>`
+  ).join('');
+  document.getElementById('statusToggle').innerHTML = `
+    <button class="stog ${activeStatus==='active'?'active':''}" onclick="setStatus('active')">✅ Currently in force</button>
+    <button class="stog ${activeStatus==='all'?'active':''}" onclick="setStatus('all')">🕓 Include withdrawn entries</button>
+  `;
+}
+function setFilter(id){activeFilter=id;buildTabs();render();}
+function setStatus(s){activeStatus=s;buildTabs();render();}
+function setFilterFromStat(id){activeFilter=id;activeStatus='active';buildTabs();render();window.scrollTo({top:document.querySelector('.controls').offsetTop-10,behavior:'smooth'});}
+
+function toggleFn(id){
+  document.getElementById(id+'-body').classList.toggle('open');
+  document.getElementById(id+'-chev').classList.toggle('open');
+}
+
+function toggleRow(id){
+  if(openRows.has(id)) openRows.delete(id); else openRows.add(id);
+  render(false);
+}
+function expandAll(){ RCM.filter(matches).forEach(r=>openRows.add(r._id)); render(false); }
+function collapseAll(){ openRows.clear(); render(false); }
+
+function matches(r){
+  if(activeStatus==='active' && r.withdrawn) return false;
+  if(activeFilter!=='all'){
+    if(activeFilter==='9(4)' && r.sec!=='9(4)') return false;
+    if(activeFilter==='9(5)' && r.sec!=='9(5)') return false;
+    if(activeFilter==='9(3)-services' && !(r.sec==='9(3)' && r.cat==='services')) return false;
+    if(activeFilter==='9(3)-goods' && !(r.sec==='9(3)' && r.cat==='goods')) return false;
+  }
+  if(searchTerm){
+    const t=searchTerm.toLowerCase();
+    const hay=(r.name+' '+r.code+' '+r.notif+' '+r.note).toLowerCase();
+    if(!hay.includes(t)) return false;
+  }
+  return true;
+}
+
+function rateClass(r){ return r.rateType==='IGST' ? 'igst' : ''; }
+function itcLabel(r){ return r.itc===true ? 'Available' : (r.itc===false ? 'Not available' : 'Conditional'); }
+
+function tableRow(r, idx){
+  const secTag = r.sec==='9(3)' ? 'sec93' : (r.sec==='9(4)' ? 'sec94' : 'sec95');
+  const catTag = r.cat==='goods' ? 'goods' : 'services';
+  const isOpen = openRows.has(r._id);
+  const mainRow = `
+  <tr class="row-main ${r.withdrawn?'withdrawn-row':''}" onclick="toggleRow('${r._id}')">
+    <td class="rn-num">${idx}</td>
+    <td>
+      <span class="chev ${isOpen?'open':''}">▶</span>
+      <span class="rn-name">${r.name}${r.withdrawn?'<span class="wd-tag">Withdrawn</span>':''}</span>
+    </td>
+    <td><span class="tag ${secTag}">§${r.sec}</span></td>
+    <td><span class="tag ${catTag}">${r.cat==='goods'?'Goods':'Services'}</span></td>
+    <td class="rn-rate ${rateClass(r)}">${r.rate}</td>
+    <td class="rn-code">${r.code}</td>
+    <td><span class="chev ${isOpen?'open':''}" style="font-size:14px">▾</span></td>
+  </tr>`;
+  const detailRow = `
+  <tr class="row-detail ${isOpen?'open':''}" id="detail-${r._id}">
+    <td colspan="7">
+      <div class="detail-inner">
+        <div class="detail-grid">
+          <div class="dg-item"><div class="dg-lbl">Section</div><div class="dg-val">${r.sec} CGST Act</div></div>
+          <div class="dg-item"><div class="dg-lbl">GST rate</div><div class="dg-val">${r.rate}${r.rateType?' ('+r.rateType+')':''}</div></div>
+          <div class="dg-item"><div class="dg-lbl">HSN / SAC</div><div class="dg-val">${r.code}</div></div>
+          <div class="dg-item"><div class="dg-lbl">Notification</div><div class="dg-val">${r.notif}</div></div>
+          <div class="dg-item"><div class="dg-lbl">Effective date</div><div class="dg-val">${r.eff}</div></div>
+          <div class="dg-item"><div class="dg-lbl">ITC to recipient</div><div class="dg-val">${itcLabel(r)}</div></div>
+        </div>
+        <div class="detail-note"><b>Details:</b> ${r.note}</div>
+        ${r.withdrawn?`<div class="withdrawn-note">🚫 Withdrawn from RCM effective ${r.withdrawn} per ${r.withdrawnNotif||'a subsequent notification'} — now taxed under forward charge.</div>`:''}
+      </div>
+    </td>
+  </tr>`;
+  return mainRow + detailRow;
+}
+
+function groupLabel(sec){
+  if(sec==='9(3)') return {t:'Section 9(3) — Notified goods & services', d:'RCM applies regardless of the supplier\'s GST registration status, for these specifically notified categories.'};
+  if(sec==='9(4)') return {t:'Section 9(4) — Triggered by an unregistered supplier', d:'RCM applies here specifically because the supplier is unregistered — limited to the notified categories below (the earlier blanket URD rule was suspended in 2018 and never fully restored).'};
+  return {t:'Section 9(5) — E-commerce operator as deemed supplier', d:'Not technically "reverse charge," but grouped here: the platform operator pays GST on behalf of the underlying unregistered service provider.'};
+}
+
+function render(resetSearch){
+  if(resetSearch !== false){ searchTerm=document.getElementById('searchInput').value.trim(); }
+  const filtered = RCM.filter(matches);
+  const out = document.getElementById('output');
+  document.getElementById('resultCount').textContent = filtered.length + ' of ' + RCM.length + ' RCM entries shown — click any row to expand full details';
+  if(filtered.length===0){
+    out.innerHTML = `<div class="empty">No RCM entries match your search/filter. Try clearing the search box.</div>`;
+    updateStats();
+    return;
+  }
+  const order = ['9(3)','9(4)','9(5)'];
+  let html='';
+  order.forEach(sec=>{
+    const items = filtered.filter(r=>r.sec===sec);
+    if(items.length===0) return;
+    const gl = groupLabel(sec);
+    html += `<div class="sec-head"><h3>${gl.t}</h3><span class="cnt">${items.length}</span></div>
+             <div class="sec-desc">${gl.d}</div>
+             <div class="tbl-wrap"><table class="rcm-table">
+               <thead><tr>
+                 <th class="num">#</th><th>Service / Goods</th><th class="sec-col">Section</th><th>Type</th>
+                 <th class="rate-col">GST Rate</th><th class="code-col">HSN / SAC</th><th class="exp-col"></th>
+               </tr></thead>
+               <tbody>${items.map((r,i)=>tableRow(r,i+1)).join('')}</tbody>
+             </table></div>`;
+  });
+  out.innerHTML = html;
+  updateStats();
+}
+
+function updateStats(){
+  const activeEntries = RCM.filter(r=>!r.withdrawn);
+  const s93 = activeEntries.filter(r=>r.sec==='9(3)').length;
+  const s94 = activeEntries.filter(r=>r.sec==='9(4)').length;
+  const s95 = activeEntries.filter(r=>r.sec==='9(5)').length;
+  const withdrawn = RCM.filter(r=>r.withdrawn).length;
+  document.getElementById('statGrid').innerHTML = `
+    <div class="sc blue" onclick="setFilterFromStat('all')"><div class="sc-lbl">Total RCM entries</div><div class="sc-val">${RCM.length}</div><div class="sc-sub">Services, goods &amp; e-comm combined</div></div>
+    <div class="sc green" onclick="setFilterFromStat('9(3)-services')"><div class="sc-lbl">§9(3) services</div><div class="sc-val">${activeEntries.filter(r=>r.sec==='9(3)'&&r.cat==='services').length}</div><div class="sc-sub">Regardless of supplier registration</div></div>
+    <div class="sc green" onclick="setFilterFromStat('9(3)-goods')"><div class="sc-lbl">§9(3) goods</div><div class="sc-val">${activeEntries.filter(r=>r.sec==='9(3)'&&r.cat==='goods').length}</div><div class="sc-sub">Cashew, tobacco, cotton, silk, PSLC…</div></div>
+    <div class="sc gold" onclick="setFilterFromStat('9(4)')"><div class="sc-lbl">§9(4) unregistered-supplier</div><div class="sc-val">${s94}</div><div class="sc-sub">Metal scrap, real estate, cement</div></div>
+    <div class="sc purple" onclick="setFilterFromStat('9(5)')"><div class="sc-lbl">§9(5) e-commerce</div><div class="sc-val">${s95}</div><div class="sc-sub">Cab, accommodation, food delivery</div></div>
+    <div class="sc rose" onclick="setStatus('all')"><div class="sc-lbl">Withdrawn entries</div><div class="sc-val">${withdrawn}</div><div class="sc-sub">Now on forward charge</div></div>
+  `;
+}
+
+buildTabs();
+render();
+buildCalcDropdown();
+
+function doLogin(){
+  const u = document.getElementById('loginUser').value.trim();
+  const p = document.getElementById('loginPass').value;
+  const err = document.getElementById('loginErr');
+  if(u === 'Smart' && p === 'SmartAI'){
+    err.style.display='none';
+    document.getElementById('login-screen').style.display='none';
+    document.getElementById('app-screen').style.display='block';
+  } else {
+    err.style.display='block';
+  }
+}
+
+function doLogout(){
+  document.getElementById('app-screen').style.display='none';
+  document.getElementById('login-screen').style.display='flex';
+  switchTab('reference');
+}
+
+// ══════════════════════ TABS ══════════════════════
+function switchTab(name){
+  document.getElementById('tab-reference').style.display = (name==='reference') ? 'block' : 'none';
+  document.getElementById('tab-calculator').style.display = (name==='calculator') ? 'block' : 'none';
+  document.getElementById('tabbtn-reference').classList.toggle('active', name==='reference');
+  document.getElementById('tabbtn-calculator').classList.toggle('active', name==='calculator');
+}
+
+// ══════════════════════ RCM CALCULATOR ══════════════════════
+
+function buildCalcDropdown(){
+  const sel = document.getElementById('calcCategory');
+  const order = ['9(3)','9(4)','9(5)'];
+  let html = '';
+  order.forEach(sec=>{
+    const items = RCM.filter(r=>r.sec===sec && !r.withdrawn);
+    if(items.length===0) return;
+    const gl = groupLabel(sec);
+    html += `<optgroup label="${gl.t.replace('Section ','§')}">`;
+    items.forEach(r=>{
+      html += `<option value="${r._id}">[§${r.sec}] ${r.name} (${r.rate}) — ${r.code}</option>`;
+    });
+    html += `</optgroup>`;
+  });
+  sel.innerHTML = html;
+  onCalcCategoryChange();
+}
+
+function parseRatePercent(rateStr){
+  const m = rateStr.match(/(\d+(\.\d+)?)\s*%/);
+  return m ? parseFloat(m[1]) : null;
+}
+function rateIsVariable(rateStr){
+  return /\/|typically|varies|applicable|as per|per declared/i.test(rateStr);
+}
+
+function onCalcCategoryChange(){
+  const sel = document.getElementById('calcCategory');
+  const r = RCM.find(x=>x._id===sel.value);
+  const isIgstOnly = r && r.rateType === 'IGST';
+  document.getElementById('stbtn-intra').disabled = !!isIgstOnly;
+  document.getElementById('stbtn-intra').style.opacity = isIgstOnly ? '0.4' : '1';
+  document.getElementById('stbtn-intra').style.cursor = isIgstOnly ? 'not-allowed' : 'pointer';
+  if(isIgstOnly){ calcSupply = 'inter'; }
+  document.getElementById('stbtn-intra').classList.toggle('active', calcSupply==='intra');
+  document.getElementById('stbtn-inter').classList.toggle('active', calcSupply==='inter');
+  computeCalc();
+}
+
+function setSupplyType(type){
+  const sel = document.getElementById('calcCategory');
+  const r = RCM.find(x=>x._id===sel.value);
+  if(r && r.rateType==='IGST' && type==='intra') return; // import of services is always IGST
+  calcSupply = type;
+  document.getElementById('stbtn-intra').classList.toggle('active', calcSupply==='intra');
+  document.getElementById('stbtn-inter').classList.toggle('active', calcSupply==='inter');
+  computeCalc();
+}
+
+function computeCalc(){
+  const sel = document.getElementById('calcCategory');
+  const r = RCM.find(x=>x._id===sel.value);
+  if(!r) return;
+  const amount = parseFloat(document.getElementById('calcAmount').value) || 0;
+  const rate = parseRatePercent(r.rate);
+  const variable = rateIsVariable(r.rate);
+
+  // Category info box
+  document.getElementById('calcCatInfo').innerHTML = `
+    <span class="cc-rate-badge">Rate: ${r.rate}</span>
+    <div class="cc-name">Category: ${r.name}</div>
+    <div class="cc-meta">Notification: ${r.notif} | HSN/SAC: ${r.code}</div>
+  `;
+
+  const resultBox = document.getElementById('calcResult');
+  if(rate===null){
+    resultBox.innerHTML = `
+      <div class="cr-title">💲 Tax computation breakdown</div>
+      <div class="calc-note warn"><b>Rate not fixed:</b> This category's GST rate depends on the HSN/SAC classification of the specific goods/service involved (see notes on the Reference tab), so it can't be auto-computed here. Identify the applicable rate for your specific item, then use a numeric-rate category or apply that rate manually to the invoice value of ₹${amount.toLocaleString('en-IN')}.</div>
+    `;
+    return;
+  }
+
+  let cgst=0, sgst=0, igst=0, total=0;
+  if(calcSupply==='intra'){
+    cgst = amount * rate / 2 / 100;
+    sgst = amount * rate / 2 / 100;
+    total = cgst + sgst;
+  } else {
+    igst = amount * rate / 100;
+    total = igst;
+  }
+
+  let breakdownHtml = '';
+  if(calcSupply==='intra'){
+    breakdownHtml = `
+      <div class="cr-box"><div class="cr-lbl">CGST (${(rate/2)}%)</div><div class="cr-val">₹${cgst.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}</div></div>
+      <div class="cr-box"><div class="cr-lbl">SGST (${(rate/2)}%)</div><div class="cr-val">₹${sgst.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}</div></div>
+      <div class="cr-box total"><div class="cr-lbl">Total tax payable</div><div class="cr-val">₹${total.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}</div></div>
+    `;
+  } else {
+    breakdownHtml = `
+      <div class="cr-box"><div class="cr-lbl">IGST (${rate}%)</div><div class="cr-val">₹${igst.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}</div></div>
+      <div class="cr-box total"><div class="cr-lbl">Total tax payable</div><div class="cr-val">₹${total.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})}</div></div>
+    `;
+  }
+
+  let itcNote = '';
+  if(r.itc===true){
+    itcNote = `<div class="calc-note ok"><b>✓ ITC availability:</b> Fully eligible for ITC claim in the same period's return (subject to the supply being used for business purposes), once the RCM tax is paid in cash.</div>`;
+  } else if(r.itc===false){
+    itcNote = `<div class="calc-note blocked"><b>✗ ITC availability:</b> Not available to the recipient for this category (see the Reference tab entry for the specific statutory reason — e.g. a Section 17(5) block).</div>`;
+  } else {
+    itcNote = `<div class="calc-note warn"><b>⚠ ITC availability:</b> Conditional — depends on specific facts (e.g. threshold computations, related-party valuation, or promoter-specific rules). Refer to the full note on the Reference tab.</div>`;
+  }
+
+  const variableNote = variable ? `<div class="calc-note warn"><b>Note:</b> The rate shown (${r.rate}) may vary by sub-case — this calculation uses the first applicable percentage (${rate}%). Confirm against the specific fact pattern before relying on this figure.</div>` : '';
+  const withdrawnNote = r.withdrawn ? `<div class="calc-note blocked"><b>🚫 Withdrawn:</b> This category was withdrawn from RCM effective ${r.withdrawn} and now falls under forward charge — this calculation is for historical reference only.</div>` : '';
+
+  resultBox.innerHTML = `
+    <div class="cr-title">💲 Tax computation breakdown</div>
+    <div class="cr-grid">${breakdownHtml}</div>
+    <div class="calc-note"><b>Mandatory cash payment:</b> RCM tax of ₹${total.toLocaleString('en-IN',{minimumFractionDigits:2,maximumFractionDigits:2})} must be paid electronically in cash via GSTR-3B Table 3.1(d). You cannot use existing Input Tax Credit (ITC) to discharge this RCM liability.</div>
+    ${itcNote}
+    ${variableNote}
+    ${withdrawnNote}
+  `;
+}
+</script>
+</div>
+</body>
+</html>
